@@ -1,0 +1,12 @@
+{
+    "welcome": "እንኳን ደህና መጡ",
+    "email": "ኢሜል",
+    "password": "ቁልፍ",
+    "remember": "አስታውስ",
+    "forgotPassword": "ቁልፍ ረስተውት?",
+    "login": "ግብት",
+    "doNotHaveAnAccount": "ኢጵላሣጵ አካውንት የለወትም?",
+    "createAnAccount": "ስለዚአካውንት ለመክፈት",
+    "checkIsValidEmail": "ያስገቡት ኢሜል ትክክል መሆኑን ያረጋግጡ",
+    "companyName": "ኢጵላሣጵ"
+}
