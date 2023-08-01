@@ -1,0 +1,12 @@
+{
+    "welcome": "Welcome",
+    "email": "Email",
+    "password": "Password",
+    "remember": "Remember",
+    "forgotPassword": "Forgot Password",
+    "login": "Login",
+    "doNotHaveAnAccount": "Do not have an account?",
+    "createAnAccount": "Create an account",
+    "checkIsValidEmail": "Please check your email weather its valid or not",
+    "companyName": "Eplus App"
+}

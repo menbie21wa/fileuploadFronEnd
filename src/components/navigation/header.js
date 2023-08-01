@@ -4,29 +4,31 @@ import { useNavigate } from "react-router-dom";
 import { RiMenuLine } from "react-icons/ri";
 import { HiOutlineX } from "react-icons/hi";
 import { NavLink, useLocation } from "react-router-dom";
-const Header=()=>{
+import { useTranslation } from 'react-i18next'
+
+const Header = () => {
 
   const [navBackground, setNavBackground] = useState(false);
   const [nav, setNav] = useState(false);
-   const userInfo = localStorage.getItem("userInfo")
-  ? JSON.parse(localStorage.getItem("userInfo"))
-  : null;
-  
-    const navigate=useNavigate();
-    const location = useLocation();
-  function logoutBtn(){  
+  const userInfo = localStorage.getItem("userInfo")
+    ? JSON.parse(localStorage.getItem("userInfo"))
+    : null;
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  function logoutBtn() {
     // localStorage.clear();
     navigate("/login");
   }
-      // if(userInfo==null)
-      //    {
-      //     navigate("/login");
-      //     }
-      const handleNav = () => {
-        setNav((prev) => !prev);
-      };
-      const navRef = useRef();
-      navRef.current = navBackground;
+  // if(userInfo==null)
+  //    {
+  //     navigate("/login");
+  //     }
+  const handleNav = () => {
+    setNav((prev) => !prev);
+  };
+  const navRef = useRef();
+  navRef.current = navBackground;
 
   const styles = () => {
     switch (location.pathname) {
@@ -57,9 +59,16 @@ const Header=()=>{
         );
     }
   };
-    return(
-        <>
-        <div
+
+  const { t: translate, i18n } = useTranslation(['header']);
+  const handleLangChange = (e) => {
+    i18n.changeLanguage(e.target.value)
+  }
+
+  const currentLanguage = localStorage.getItem('i18nextLng') || "";
+  return (
+    <>
+      <div
         style={{
           background: styles(),
         }}
@@ -69,12 +78,12 @@ const Header=()=>{
         <div
           className="pl-3 mt-2"
           style={{ display: "flex", alignItems: "center", height: "100%" }}
-        >  
-        <div className="container flex justify-between items-center mx-auto px-3">
-           <div className="flex">
-            <div className="flex bg-white justify-between items-center fixed md:relative left-0 top-0 w-full">
-                   {/* <img src={Logo} className="h-20 w-20"/> */}
-               <div className="flex">
+        >
+          <div className="container flex justify-between items-center mx-auto px-3">
+            <div className="flex">
+              <div className="flex bg-white justify-between items-center fixed md:relative left-0 top-0 w-full">
+                {/* <img src={Logo} className="h-20 w-20"/> */}
+                <div className="flex">
                   <NavLink to="/">{logos}</NavLink>
                 </div>
                 <div
@@ -83,59 +92,59 @@ const Header=()=>{
                 >
                   {!nav && <RiMenuLine size={24} />}
                 </div>
-             </div> 
-          </div> 
-        <ul className="hidden md:flex">
+              </div>
+            </div>
+            <ul className="hidden md:flex">
               <li className="p-4 hover:bg-white">
-                <NavLink  to="/">
-                  home
+                <NavLink to="/">
+                  {translate("home")}
                 </NavLink>
               </li>
               <li className="p-4 hover:bg-white">
                 <NavLink
                   to="/images"
                 >
-                  Images
+                  {translate("images")}
                 </NavLink>
               </li>
               <li className="p-4 hover:bg-white">
-                <NavLink 
+                <NavLink
                   to="/videos"
                 >
-                  Videos
+                  {translate("videos")}
                 </NavLink>
               </li>
               <li className="p-4 hover:bg-white">
-              <NavLink 
+                <NavLink
                   to="/audios"
                 >
-                  Audios
+                  {translate("audios")}
                 </NavLink>
               </li>
               <li className="p-4 hover:bg-white">
-              <NavLink  
+                <NavLink
                   to="/files"
                 >
-                  Files
+                  {translate("files")}
                 </NavLink>
               </li>
               <li className="p-4 hover:bg-white">
-              <NavLink
+                <NavLink
                   to="/addfile"
                 >
-                  Add New
+                  {translate("addNew")}
                 </NavLink>
               </li>
               <li className="p-4 hover:bg-white">
-              <button
+                <button
                   className="leading-snug hover:text-primary font-display  hover:opacity-75 text-xl"
                   onClick={logoutBtn}
                 >
-                  Logout
+                  {translate("logout")}
                 </button>
               </li>
-              </ul>
-          <ul
+            </ul>
+            <ul
               className={
                 nav
                   ? "xl:hidden fixed left-0 top-0 w-full text-textColor bg-white ease-in-out duration-500 hover:opacity-75 text-lg hover:transform hover:scale-100 hover:md:scale-125 hover:duration-300"
@@ -143,26 +152,26 @@ const Header=()=>{
               }
             >
 
-               <div className="flex my-2 ml-4">
+              <div className="flex my-2 ml-4">
                 <h1>
                   <img
                     className="w-20 ml-4 "
                     src={Logo}
                     alt="Logo"
                   />
-                  </h1>
+                </h1>
                 <h1 onClick={handleNav} className="mr-4">
                   {" "}
                   {nav && <HiOutlineX size={20} />}
                 </h1>
-                </div>
-          
-          <li className="p-4 text-center">
+              </div>
+
+              <li className="p-4 text-center">
                 <a
                   className="leading-snug hover:text-primary font-display  hover:opacity-75 text-xl"
                   href="/"
                 >
-                  home
+                  {translate("home")}
                 </a>
               </li>
               <li className="p-4 text-center">
@@ -170,7 +179,7 @@ const Header=()=>{
                   className="leading-snug hover:text-primary font-display  hover:opacity-75 text-xl"
                   href="/images"
                 >
-                  Images
+                  {translate("images")}
                 </a>
               </li>
               <li className="p-4 text-center">
@@ -178,7 +187,7 @@ const Header=()=>{
                   className="leading-snug hover:text-primary font-display  hover:opacity-75 text-xl"
                   href="/videos"
                 >
-                  Videos 
+                  {translate("videos")}
                 </a>
               </li>
               <li className="p-4 text-center">
@@ -186,7 +195,7 @@ const Header=()=>{
                   className="leading-snug hover:text-primary font-display  hover:opacity-75 text-xl"
                   href="/audios"
                 >
-                  Audios
+                  {translate("audios")}
                 </a>
               </li>
               <li className="p-4 text-center">
@@ -194,7 +203,7 @@ const Header=()=>{
                   className="leading-snug hover:text-primary font-display  hover:opacity-75 text-xl"
                   href="/files"
                 >
-                  Files
+                  {translate("files")}
                 </a>
               </li>
               <li className="p-4 text-center">
@@ -202,7 +211,7 @@ const Header=()=>{
                   className="leading-snug hover:text-primary font-display  hover:opacity-75 text-xl"
                   href="/addfile"
                 >
-                  Add New
+                  {translate("addNew")}
                 </a>
               </li>
               <li className="p-4 text-center">
@@ -210,18 +219,23 @@ const Header=()=>{
                   className="leading-snug hover:text-primary font-display  hover:opacity-75 text-xl"
                   onClick={logoutBtn}
                 >
-                  Logout
+                  {translate("logout")}
                 </button>
               </li>
-          </ul>
+            </ul>
 
+            <select className="mx-3 px-3 border-none rounded-full shadow-md" onChange={handleLangChange}>
+              <option value="" selected hidden>{currentLanguage === 'am' ? "አማ" : "en"}</option>
+              <option value="am">አማ</option>
+              <option value="en">en</option>
+            </select>
 
+          </div>
         </div>
-        </div>
-        </div> 
-        {/* </div> */}
-        
-        </>
-    )
+      </div>
+      {/* </div> */}
+
+    </>
+  )
 }
 export default Header;
