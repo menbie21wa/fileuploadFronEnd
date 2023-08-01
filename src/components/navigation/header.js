@@ -68,7 +68,6 @@ const Header = () => {
   const currentLanguage = localStorage.getItem('i18nextLng') || "";
   return (
     <>
-      <></>
       <div
         style={{
           background: styles(),
